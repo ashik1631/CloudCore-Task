@@ -9,7 +9,7 @@
         <ul class="navbar-nav">
             <!-- sideBar item -->
             <li class="nav-item">
-                <a class="nav-link {{ Route::is('user.profile.index') ? 'active' : '' }}" href="#"><i
+                <a class="nav-link {{ Route::is('user.UserProfile.index') ? 'active' : '' }}" href="{{ route('user.UserProfile.index') }}"><i
                         class="fa fa-fw fa-rocket text-warning"></i>
                     <span class="mx-2">User Profile</span></a>
             </li>
