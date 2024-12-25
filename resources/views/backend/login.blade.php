@@ -6,7 +6,7 @@
         <div class="container">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a class="text-primary" href="{{ route('user.task.index') }}">Go-Task-Page</a></li>
-                <li class="breadcrumb-item active" aria-current="page">After-Login-Here</li>
+                <li class="breadcrumb-item active" aria-current="page">Login-Here</li>
             </ol>
         </div>
         <!-- container area end -->
@@ -24,12 +24,21 @@
                     <h3>Login to your account</h3>
                     @include('layouts.message')
 
-                    <form action="{{ url('/logins') }}" method="POST">
+                    <form action="{{ route('user.UserProfile.store') }}" method="POST">
                         @csrf
+                        <div class="input-group Name mb-4">
+                            <span class="input-group-text text-muted" id="inputGroup-sizing-default1"><i
+                                    class="las la-envelope la-2x"></i></span>
+                            <input type="text" name="name" value="{{ old('name') }}" required class="form-control form-control-lg rounded-0"
+                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default2"
+                                placeholder="Your Name">
+                                <span class="input-group-text text-muted" id="inputGroup-sizing-default3"><i
+                                    class="las la-eye-slash la-2x"></i></span>
+                        </div>
                         <div class="input-group login mb-4">
                             <span class="input-group-text text-muted" id="inputGroup-sizing-default1"><i
                                     class="las la-envelope la-2x"></i></span>
-                            <input type="text" name="email" required class="form-control form-control-lg rounded-0"
+                            <input type="text" name="email" value="{{ old('email') }}" required class="form-control form-control-lg rounded-0"
                                 aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default2"
                                 placeholder="user@gmail.com">
                                 <span class="input-group-text text-muted" id="inputGroup-sizing-default3"><i

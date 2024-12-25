@@ -13,11 +13,14 @@
                         class="fa fa-fw fa-rocket text-warning"></i>
                     <span class="mx-2">User Profile</span></a>
             </li>
+            
+            @if (auth()->check())
             <li class="nav-item">
                 <a class="nav-link {{ Route::is('user.task.index') ? 'active' : '' }}" href="{{ route('user.task.index') }}"><i
                         class="fa fa-fw fa-rocket text-warning"></i>
                     <span class="mx-2">Task</span></a>
             </li>
+            @endif
         </ul>
     </nav>
 </div>

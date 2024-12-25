@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\backend\CategoryController;
-use App\Http\Controllers\backend\dashboardController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserProfileController;
 use Illuminate\Support\Facades\Route;
@@ -17,10 +15,18 @@ Route::get('/', function () {
 //Route::get('/user/dashboard',[dashboardController::class,'index'])->name('dashboard');
 
 //group route
-Route::prefix('user/')->name('user.')->group(function () {
+Route::prefix('user/')->middleware(['auth'])->name('user.')->group(function () {
     //one line rout
+    //Route::resource('UserProfile', UserProfileController::class);
     //Task route
     Route::resource('task', TaskController::class);
-    Route::resource('UserProfile', UserProfileController::class);
+});
 
+Route::middleware('auth')->get('/logout', [UserProfileController::class, 'logout'])->name('logout');
+Route::prefix('user/')->middleware(['auth'])->name('user.')->group(function(){
+    Route::resource('UserProfile', UserProfileController::class);
+});
+
+Route::prefix('user/')->middleware(['guest'])->name('user.')->group(function(){
+    Route::resource('UserProfile', UserProfileController::class);
 });
