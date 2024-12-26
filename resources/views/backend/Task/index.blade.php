@@ -50,9 +50,11 @@
                     <td>{{ $item->link }}</td>
                     <td>
                         @if ($item->status==1)
-                        <span class="badge badge-success">Publish</span>
+                        <span class="badge badge-success">Completed</span>
+                        @elseif ($item->status==0)
+                        <span class="badge badge-danger">Pending</span>
                         @else
-                        <span class="badge badge-danger">Unpublish</span>
+                        <span class="badge badge-warning">In-Progress</span>
                         @endif
                     </td>
 

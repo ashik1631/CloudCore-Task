@@ -40,8 +40,9 @@
                             <div class="form-group">
                                 <label for="status">Task-status</label>
                                <select name="status" class="form-control">
-                                <option {{ old('Task-status')==1 ? 'selected': ''}} value="1">publish</option>
-                                <option {{ old('Task-status')==0 ? 'selected': ''}} value="0">unpublish</option>
+                                <option {{ old('Task-status')==1 ? 'selected': ''}} value="1">Completed</option>
+                                <option {{ old('Task-status')==0 ? 'selected': ''}} value="0">Pending</option>
+                                <option {{ old('Task-status')==2 ? 'selected': ''}} value="2">In-Progress</option>
                                </select>
                             </div>
                             <div class="form-group">

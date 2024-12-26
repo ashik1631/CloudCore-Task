@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('link');
-            $table->enum('status',['1','0'])->default(0);
+            $table->enum('status',['1','0','2'])->default(0);
             $table->string('image')->nullable();
             $table->timestamps();
         });

@@ -47,8 +47,9 @@
                                 <div class="form-group">
                                     <label for="status">Task-status</label>
                                     <select name="status" class="form-control">
-                                        <option value="1">publish</option>
-                                        <option value="0">unpublish</option>
+                                        <option value="1">Completed</option>
+                                        <option value="0">Pending</option>
+                                        <option value="2">In-Progress</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
