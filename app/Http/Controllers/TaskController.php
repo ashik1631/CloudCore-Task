@@ -47,7 +47,7 @@ class TaskController extends Controller
             Session::flash('message', 'success');
 
 
-            return redirect()->back();
+            return redirect()->route('user.task.index');
         } catch (\Throwable $th) {
             //throw $th;
         }
@@ -85,7 +85,7 @@ class TaskController extends Controller
         $task->update();
         Session::flash('type', 'success');
         Session::flash('message', 'success');
-        return redirect()->back();
+        return redirect()->route('user.task.index');
 
         /*in one line code forupdate;
 Task::findOrFail($id)->update($request->all());

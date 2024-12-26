@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\Authcontroller;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserProfileController;
 use Illuminate\Support\Facades\Route;
@@ -30,3 +31,6 @@ Route::prefix('user/')->middleware(['auth'])->name('user.')->group(function(){
 Route::prefix('user/')->middleware(['guest'])->name('user.')->group(function(){
     Route::resource('UserProfile', UserProfileController::class);
 });
+Route::middleware('guest')->get('/logins', [UserProfileController::class, 'logins'])->name('logins');
+//Route::middleware('guest')->post('/login', [UserProfileController::class, 'login'])->name('login');
+Route::post('/login', [UserProfileController::class, 'login'])->name('login');

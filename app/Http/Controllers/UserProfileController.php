@@ -14,7 +14,7 @@ class UserProfileController extends Controller
      */
     public function index()
     {
-        return view('backend.login');
+        return view('backend.register');
     }
 
     /**
@@ -26,32 +26,52 @@ class UserProfileController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required',
-            'image' => 'nullable',
+            'image' => 'required|mimes:png,jpg,jpeg',
         ]);
 
         $data = $request->all();
 
         //image upload...
-        //$file = $request->file('image');
-        //$extension = $file->getClientOriginalExtension();
-        //$photoName = time() . '.' . $extension;
-        //$file->move(public_path('uploads/user/'), $photoName);
-        //$data['image'] = 'uploads/user/' . $photoName;
-       // image uploadend
+        $file = $request->file('image');
+        $extension = $file->getClientOriginalExtension();
+        $photoName = time() . '.' . $extension;
+        $file->move(public_path('uploads/user/'), $photoName);
+        $data['image'] = 'uploads/user/' . $photoName;
+        //image uploadend
 
-        $data['password'] = Hash::make($request->password);
+
+       /* $data['password'] = Hash::make($request->password);*/
         $user = User::create($data);
         Auth::login($user);
-        return redirect()->back();
+        return redirect()->route('user.task.index');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function profiles()
+    public function logins()
     {
-        $user=User::get();
-        return view('backend.login',compact('user'));
+        return view('backend.login');
+    }
+
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        if(Auth::attempt($credentials))
+        {
+            $request->session()->regenerate();
+            return redirect()->route('user.task.index')
+                ->withSuccess('You have successfully logged in!');
+        }
+
+        return back()->withErrors([
+            'email' => 'Your provided credentials do not match our records.',
+        ])->onlyInput('email');
+
     }
 
     /**
@@ -60,6 +80,6 @@ class UserProfileController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect()->back();
+        return redirect()->route('user.UserProfile.index');
     }
 }

@@ -5,7 +5,7 @@
         <!-- container area start -->
         <div class="container">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a class="text-primary" href="{{ route('user.task.index') }}">Go-Task-Page</a></li>
+                <li class="breadcrumb-item"><a class="text-primary" href="{{ route('user.UserProfile.index') }}">Go-Register-Page</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Login-Here</li>
             </ol>
         </div>
@@ -23,18 +23,8 @@
                 <div class="card login_form p-4 shadow">
                     <h3>Login to your account</h3>
                     @include('layouts.message')
-
-                    <form action="{{ route('user.UserProfile.store') }}" method="POST">
+                    <form action="{{ route('login') }}" method="post">
                         @csrf
-                        <div class="input-group Name mb-4">
-                            <span class="input-group-text text-muted" id="inputGroup-sizing-default1"><i
-                                    class="las la-envelope la-2x"></i></span>
-                            <input type="text" name="name" value="{{ old('name') }}" required class="form-control form-control-lg rounded-0"
-                                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default2"
-                                placeholder="Your Name">
-                                <span class="input-group-text text-muted" id="inputGroup-sizing-default3"><i
-                                    class="las la-eye-slash la-2x"></i></span>
-                        </div>
                         <div class="input-group login mb-4">
                             <span class="input-group-text text-muted" id="inputGroup-sizing-default1"><i
                                     class="las la-envelope la-2x"></i></span>
@@ -53,13 +43,6 @@
                             <span class="input-group-text text-muted" id="inputGroup-sizing-default3"><i
                                     class="las la-eye-slash la-2x"></i></span>
                         </div>
-                        <div class="input-group login mb-3">
-                            <span class="input-group-text text-muted" id="inputGroup-sizing-default3"><i
-                                class="las la-eye-slash la-2x"></i></span>
-                            <input type="file" name="image" class="form-control" placeholder="select your User-image">
-                            <span class="input-group-text text-muted" id="inputGroup-sizing-default3"><i
-                                class="las la-eye-slash la-2x"></i></span>
-                        </div>
                         <div class="d-flex justify-content-between mb-4 rem__for">
                             <div class="form-check d-flex align-items-center">
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
@@ -73,6 +56,10 @@
                             <button type="submit" class="btn btn-lg btn-primary shadow">LOGIN</button>
                         </div>
                     </form>
+                    <div class="sign_up">
+                        <span class="text-muted any__account">Don't have any account ? <a class="text-primary"
+                                href="{{ route('user.UserProfile.index') }}">Register first</a></span>
+                    </div>
                 </div>
             </div>
         </div>

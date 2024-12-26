@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserMiddleware
+
+
 {
     /**
      * Handle an incoming request.
@@ -19,6 +21,6 @@ class UserMiddleware
         if (Auth::check() && Auth::user()) {
             return $next($request);
         }
-        return redirect()->route('user.UserProfile.index');
+        return redirect()->route('logins');
     }
 }
